@@ -25,7 +25,13 @@ function precmd(){
   if [[ "${DEFAULT_USER}" == "${USER}" ]]; then
     _user=''
   else
-    _user=`whoami`
+    _user="`whoami`"
+    _non_sudo_user="`who -s | awk '{ print $1 }'`"
+    if [[ "${_non_sudo_user}" != "${_user}" ]]; then
+      _user+="($_non_sudo_user)"
+    fi
+    _user="${(q)_user}"
+    _user+="@%M"
   fi
   
   PROMPT='
