@@ -26,7 +26,7 @@ function precmd(){
     _user=''
   else
     _user="`whoami`"
-    _non_sudo_user="`who -s | awk '{ print $1 }'`"
+    _non_sudo_user="`who -s | awk '{ print $1; exit}'`"
     if [[ "${_non_sudo_user}" != "${_user}" ]]; then
       _user+="($_non_sudo_user)"
     fi
