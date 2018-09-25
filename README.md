@@ -14,6 +14,20 @@
 
 alien theme is **independent** of any library like Oh-My-Zsh or Prezto. Whatever it needs already included inside. The only exception is font. You need to **install the powerline patched fonts** to properly display the prompt.
 
+## About the Fork - Change Log from Original
+
+The upstream `alien` prompt is a great project and I strongly recommend those finding this repository to use it ahead of this one unless the added features are (a) still not available in upstream or (b) are unnecessary for what you do dday-to-day.  While I'm likely to keep this up-to-date and add features to it (since **I** really like the way this prompt works and don't see replacing my use of it anytime soon), I'm not terribly interested in supporting this fork outside of my own needs.  If it proves popular enough, I'll see about a pull request with upstream (assuming they're at all interested in what I've tweaked).
+
+This is a small fork of the alien theme to add the hostname for easier identification when I'm SSHed into a remote host so that I don't accidentally run the wrong command in the wrong place.  It also updates the prompt when a user runs `sudo -i`, providing the name of the user who ran `sudo` in addition to the current user (usually `root` unless `sudo -iu` was used).
+
+I have every expectation that this fork would work for others desiring that funcitonality, however, I wrote it quick and dirty for myself after accidentally smoking a home directory on my server (due to, bingo, not realizing I had alt-tabbed into the wrong Alacritty window).
+
+I also use `zplugin` with the included [zsh module](https://github.com/zdharma/zplugin#more-on-zplugin-zsh-module).  This results in all directories containing zsh scripts to get an additional `.zwc`, compiled, zsh script.  Normally, I'd update the `.gitmodules` to ignore dirty modules, along with updating the `.git/config/module/**/exclude` files to eliminate the `.zwc` files, however, since I use this every day and want things clean/up-to-date, I have forked the submodules and updated this script to point to them.
+
+I will be including a script to pull from the upstream `alien` repo and patch it with changes from this repository (heck, it might already be there since there's a relatively good chance that I've updated the code before I hit up the REAMDE again)
+
+...and becuase I use zplugin, I have updated the instructions below to include install instructions (very basic -- it could be done significantly better, I presume).  These instructions will also work for the original project if you change the repo name accordingly
+
 ## Requirements
 
 - zsh (obviously)
@@ -25,15 +39,29 @@ Add the following line to your .zshrc depending on your zsh plugin manager
 
 ##### [antigen](https://github.com/zsh-users/antigen):
 
-    antigen theme eendroroy/alien alien
+```zsh
+antigen theme Diagonactic/alien alien
+```
 
 ##### [zgen](https://github.com/tarjoilija/zgen):
 
-    zgen load eendroroy/alien
+```zsh
+zgen load Diagonactic/alien
+```
 
 ##### [zplug](https://github.com/zplug/zplug):
 
-    zplug "eendroroy/alien"
+```zsh
+zplug "Diagonactic/alien"
+```
+
+##### [zplugin](https://github.com/zdharma/zplugin):
+
+```zsh
+zplugin load Diagonactic/alien
+# Using light instead of load will probably work, but I haven't tested it
+# There's also likely some ice configuration that would make this better but I'm in a hurry (-8
+```
 
 ##### [oh-my-zsh: Overriding and Adding Themes](https://github.com/robbyrussell/oh-my-zsh/wiki/Customization#overriding-and-adding-themes)
 
