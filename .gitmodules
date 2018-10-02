@@ -8,5 +8,6 @@
 	branch = master
 [submodule "libs/promptlib"]
 	path = libs/promptlib
-	url = git@github.com:Diagonactic/promptlib-zsh.git  
+	#url = git@github.com:Diagonactic/promptlib-zsh.git  
+	url = keybase://team/zshell/fast-promptlib
 	branch = master
