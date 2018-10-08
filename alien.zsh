@@ -19,6 +19,7 @@ source "${THEME_ROOT}/modules/python.zsh"
 function precmd(){
   autoload -U add-zsh-hook
   setopt localoptions prompt_subst
+
   alien_load_theme
 
   RPROMPT=''
@@ -27,10 +28,12 @@ function precmd(){
   else
     [[ -n "$SUDO_USER" && "$SUDO_USER" != "${_user}" ]] && _user="$USER($SUDO_USER)@%M" || _user="$USER@%M"
   fi
-  fplib-git-repo_property_map
+
 
   PROMPT='
 %(?.%K{$color0}%F{$color1}%f%k.%K{$color0}%F{$color1r}%f%k)%K{$color0}%F{$color2}%f%k%K{$color3}%F{$color0}%f%k%K{$color3}%F{$color4} $_user %f%k%K{$color5}%F{$color3}%f%k%K{$color5}%F{$color6} %~ %f%k%F{$color5}%f
 %F{$color3}$(alien_ssh_client)%f%F{$color14}`alien_venv`%f%F{$color8}%B❱%b%f '
+
   alien_async_prompt
+
 }
